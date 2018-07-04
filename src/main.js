@@ -2,42 +2,18 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import VueRouter from 'vue-router';
-import goods from '@/components/goods/goods';
-import ratings from '@/components/ratings/ratings';
-import seller from '@/components/seller/seller';
-import '@/common/stylus/index.styl'
-Vue.config.productionTip = false;
-Vue.use(VueRouter);
-const routes = [
-  {
-    path: "/",
-    component: goods
-  },
-  {
-    path: "/goods",
-    component: goods
-  },
-  {
-    path: "/ratings",
-    component: ratings
-  },
-  {
-    path: "/seller",
-    component: seller
-  }
-];
-const router =new VueRouter({
-  linkActiveClass:'active',
-  routes
-})
-
-
-
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import './mock'
+import store from '@/store'
+import  {currency} from './currency'
+Vue.filter('currency',currency);
+Vue.use(ElementUI);
+Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  store,
   components: { App },
   template: '<App/>'
 })
