@@ -34,18 +34,17 @@ const actions = {
     // console.log(product);
     // 是否已经在购物车中？
     if (product.inventory > 0) {
-      const cartItem = state.items.find(item => item.id === product.id)
+      const cartItem = state.items.find(item => item.id === product.id);
       if (!cartItem) {
-        commit('pushProductToCart', { id: product.id })
+        commit("pushProductToCart", { id: product.id });
         // 需要什么就存取什么，不用把所有的都保存下来，同时解构很有用,尤其注意传递的是对象的时候，即使对象里只有一个属性，取出来也要使用解构
-
       } else {
-        commit('incrementItemQuantity', cartItem)
+        commit("incrementItemQuantity", cartItem);
       }
-      commit('decrementProductInventory', { id: product.id })
+      commit("decrementProductInventory", { id: product.id });
     }
   }
-}
+};
 const mutations = {
   pushProductToCart(state, { id }) {
     state.items.push({

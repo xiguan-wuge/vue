@@ -1,25 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import products from './modules/products'
+import cart from './modules/cart'
+
 Vue.use(Vuex)
 
-
-// lbs应用  Location Based Service   基于移动位置服务
-const state={
-  latitude:'',
-  longitude:'',
-  cartList:{},
-  userInfo:null,
-  shopId:null,
-  products:[],
-  shopDetail:null
-}
-
 export default new Vuex.Store({
-  state,
-  getters,
-  actions,
-  mutations
+  modules:{
+    products,
+  }
 })

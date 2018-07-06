@@ -1,37 +1,32 @@
 <template>
   <div id="app">
-    <router-link to="/home">home</router-link>
-    <router-link to="/login">login</router-link>
-    <!-- vue内置组件 -->
-    <transition name="router-fade">
-      <!-- <keep-alive>是Vue的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM。 -->
-      <keep-alive>
-        <router-view v-if="$route.meta.keepalive"></router-view>
-      </keep-alive>      
-    </transition>
-    <transition name="router-fade">
-      <router-view v-if="!$route.meta.keepalive"></router-view>
-    </transition>
+    <h1>Shopping Cart Example</h1>
+    <hr>
+    <h2>Product</h2>
+    <product-list></product-list>
+    <shopping-cart></shopping-cart>
   </div>
 </template>
 
 <script>
+import shoppingCart from '@/components/shoppingCart';
+import productList from '@/components/productList';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {   
+  shoppingCart,
+  productList
+  }
 }
-</script >
+</script>
 
-<style lang="stylus">
-@import './style/common'
-// name+ 进入的那一瞬间 
-// router-fade-enter-active 会在进入整个过程里,
-//完全进入后会移除这个类名
-.router-fade-enter-active,
-.router-fade-leave-active{
-  transition:opacity .3s
-}
-.router-fade-enter,
-.router-fade-leave-active{
-  opacity:0;
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
