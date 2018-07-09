@@ -1,11 +1,7 @@
-import { ADD_CART } from "./mutation-type.js";
+import * as types from './mutation-type'
+
 export default {
-  // []标志一个变量名
-  // [ADD_CART]:(state,{})=>{
-
-  // };
-  [ADD_CART ](state,{shopId,food_id})
-  {
-
+  [types.ADD_TOTAL_TIME] (state, time) {
+    state.totalTime = state.totalTime + time
   }
 }

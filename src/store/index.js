@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import products from './modules/products'
-import cart from './modules/cart'
-
+import mutations from './mutations'
+import actions from './actions'
 Vue.use(Vuex)
 
+const state = {
+  totalTime: 0,
+  list: []
+}
 export default new Vuex.Store({
-  modules:{
-    products,
-  }
+  state,
+  mutations,
+  actions
 })

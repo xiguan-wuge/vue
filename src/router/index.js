@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// lazyload 图片用到时 才加载 ，避免程序启动时加载时间过长 超过1.5秒
-const home=()=>import ('@/pages/home')
-const login = () => import('@/pages/login')
+import Home from '@/components/Home'
+import TimeEntries from '@/components/TimeEntries'
+import LogTime from '@/components/LogTime'
+import NotFound from '@/components/404'
 
 Vue.use(Router)
 
@@ -10,17 +11,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect:'/home'
+      component: Home
     },
     {
       path: '/home',
-      component: home
-    },{
-      path:'/login',
-      component:login,
-      meta:{
-        keepalive:true
-      }
+      component: Home
+    },
+    {
+      path: '/time-entries',
+      component: TimeEntries,
+      children: [{
+        path: 'log-time',
+        component: LogTime
+      }]
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 })
