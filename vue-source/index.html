@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue 依赖收集</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{title}}</h2>
+    <input v-model="name">
+    <h1>{{name}}</h1>
+    <button v-on:click="clickMe">click me!</button>
+  </div>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/index.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        title: 'hello world',
+        name: 'JT L'
+      },
+      methods: {
+        clickMe() {
+          console.log('执行点攻击事件');
+          this.title = 'nice to see you'
+        }
+      },
+      // 生命周期 组建挂载render 函数执行在compile之后
+
+      mounted: function () {
+        window.setTimeout(() => {
+          console.log(this.title)
+          this.title = 'hello'
+          console.log(this.title)
+        }, 1000);
+      }
+    })
+    console.log(vm)
+  </script>
+</body>
+
+</html>
