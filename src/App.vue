@@ -1,39 +1,44 @@
 <template>
   <div id="app">
-    <div id="wrapper">
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <a href="" class="navbar-brand">
-                    <i class="glyphicon glyphicon-time">计划版</i>
-                </a>
-                <ul class="nav navbar-nav">
-                    <li>
-                        <router-link to="/home">首页</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/time-entries">计划列表</router-link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="container">
-            <div class="col-sm-3">
-                <sidebar/>
-            </div>
-            <div class="col-sm-9">
-                <router-view></router-view>
-            </div>
-        </div>
-    </div>
+    <el-form :rules="rules"  labelPosition="left" :model="activity" ref="ruleForm">
+      <el-form-item label="活动名称" prop="name">
+        <el-input v-model="activity.name"></el-input>
+      </el-form-item>
+      <a class="el-button el-button--primary" @click.prevent="submitForm('ruleForm')">立即创建</a>
+    </el-form>
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
+import elFormItem from '@/components/elFormItem'
+import elForm from '@/components/elForm'
+import elInput from '@/components/elInput'
 export default {
   name: 'App',
+  data() {
+    return {
+      rules: {
+        name: [
+          {
+            required: true,
+            message: '请输入活动的名称'
+          }
+        ]
+      },
+      activity: {
+        name: 'nihao'
+      }
+    }
+  },
   components: {
-    Sidebar
+    elForm,
+    elFormItem,
+    elInput
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {})
+    }
   }
 }
 </script>
