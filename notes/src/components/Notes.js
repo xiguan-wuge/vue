@@ -48,7 +48,6 @@ class Notes extends Component {
             entities:_entities
           }
         })
-
       })
   }
   destoryEntity(entity) {
