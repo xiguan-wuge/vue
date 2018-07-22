@@ -7,16 +7,23 @@ router.get('/', async (ctx) => {
 router.get('/users', async (ctx) => {
   const users = await User.findAll({
     where: {
-      iddelete: 0
+      isdelete: 0
     }
   })
-  ctx.body = user;
+  ctx.body = users;
 });
 
 router.post('/user', koaBody(), async (ctx) => {
   // 后端要拿到前端传来的数据 
   // console.log(ctx.request.body);
   const user = await User.build(ctx.request.body).save();
+  ctx.body = user;
+});
+
+router.put('/user/:id', koaBody(), async (ctx) => {
+  const body = ctx.request.body;
+  const user = await User.findById(ctx.params.id);
+  await user.update({ ...body })
   ctx.body = user;
 })
 
